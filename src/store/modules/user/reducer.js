@@ -10,8 +10,8 @@ export default function user(state = INITIAL_STATE, action) {
     switch (action.type) {
       case '@auth/SIGN_SUCCESS': {
         const userProfile = {
-          name: action.payload.user.name,
-          email: action.payload.user.email,
+          name: action.payload.user.loja_nome,
+          email: action.payload.user.logo,
         };
         draft.profile = userProfile;
         break;

@@ -1,7 +1,7 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 
 import { toast } from 'react-toastify';
-
+import history from '../../../services/history';
 // import {Alert} from 'react-native';
 
 import api from '../../../services/api';
@@ -12,7 +12,7 @@ export function* signIn({ payload }) {
   try {
     const { email, password } = payload;
 
-    const response = yield call(api.post, '/session', {
+    const response = yield call(api.post, '/api/ward/auth', {
       email,
       password,
     });
@@ -24,6 +24,7 @@ export function* signIn({ payload }) {
     api.defaults.headers.Authorization = `Bearer ${userWithToken.token}`;
 
     yield put(signSuccess(userWithToken));
+    history.push('/dashboard');
   } catch (e) {
     if (e.response.status === 401) {
       toast.error('email ou password incorreto');
@@ -75,13 +76,14 @@ export function setToken({ payload }) {
 
 export function signOutApp() {
   signOut();
+  history.push('/');
 }
 
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
   takeLatest('@auth/SIGN_UP_REQUEST', signUp),
-  takeLatest('@auth/SIGN_OUT', signOut),
+  takeLatest('@auth/SIGN_OUT', signOutApp),
 ]);
 
 // @auth/SIGN_IN_REQUEST

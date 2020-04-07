@@ -1,14 +1,22 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import { Container, ListMenu } from './styles';
-
-import { FaFileAlt, FaNewspaper } from 'react-icons/fa';
+import { FaFileAlt, FaNewspaper, FaSignOutAlt } from 'react-icons/fa';
 
 import history from '../../services/history';
 
+import { signOut } from '../../store/modules/auth/actions';
+
 export default function VerticalMenu() {
+  const dispatch = useDispatch();
+
   function handleRedirect(path) {
     history.push(path);
+  }
+
+  function handleLogout() {
+    dispatch(signOut());
   }
 
   return (
@@ -32,10 +40,10 @@ export default function VerticalMenu() {
           <p> Novidades </p>
         </li>
 
-        {/* <li>
-          <FaFileAlt size={20} color="#fff" />
-          <p> Pedidos </p>
-        </li> */}
+        <button onClick={handleLogout}>
+          <FaSignOutAlt size={20} color="#fff" />
+          <p> Sair </p>
+        </button>
       </ListMenu>
     </Container>
   );

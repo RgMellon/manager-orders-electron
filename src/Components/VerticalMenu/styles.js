@@ -11,6 +11,19 @@ export const Container = styled.div`
 export const ListMenu = styled.ul`
   padding: 5px;
 
+  button {
+    width: 80%;
+    background: red;
+    align-self: center;
+    position: absolute;
+    bottom: 0;
+    margin: 0px;
+    background: rgba(255, 255, 255, 0);
+    border: 0px;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
   li {
     cursor: pointer;
     /* background: red; */

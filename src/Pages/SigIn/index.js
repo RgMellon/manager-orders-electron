@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Form } from '@unform/web';
 import Input from '../../Components/Input';
-
+import { toast } from 'react-toastify';
 import { Content } from './styles';
 
 import { sigInRequest } from '../../store/modules/auth/actions';
@@ -11,8 +11,17 @@ import { sigInRequest } from '../../store/modules/auth/actions';
 export default function SigIn() {
   const dispatch = useDispatch();
 
+  const [load, setLoad] = useState(false);
+
   function handleSubmit(data) {
     const { email, password } = data;
+    setLoad(true);
+
+    if (!email || !password) {
+      toast.error('Entre com um usuario e uma senha');
+      return;
+    }
+
     dispatch(sigInRequest(email, password));
   }
 
@@ -23,9 +32,26 @@ export default function SigIn() {
         alt=""
       />
       <Form onSubmit={handleSubmit}>
-        <Input name="email" type="email" placeholder="Seu email" />
-        <Input name="password" type="password" placeholder="Sua senha" />
-        <button type="submit">Fazer login</button>
+        <Input
+          name="email"
+          value="adm@uaufi.com"
+          type="email"
+          placeholder="Seu email"
+        />
+        <Input
+          name="password"
+          value="Uaufiadm2018"
+          type="password"
+          placeholder="Sua senha"
+        />
+
+        {load ? (
+          <button disabled type="submit">
+            Carregando...
+          </button>
+        ) : (
+          <button type="submit">Fazer login</button>
+        )}
       </Form>
     </Content>
   );

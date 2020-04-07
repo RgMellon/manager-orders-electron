@@ -4,12 +4,6 @@ export function sigInRequest(email, password) {
     payload: { email, password },
   };
 }
-// export function sigInSuccess(token, user) {
-//   return {
-//     type: '@auth/SIGN_IN_SUCCESS',
-//     payload: { token, user },
-//   };
-// }
 
 export function signUpRequest(name, email, password) {
   return {
