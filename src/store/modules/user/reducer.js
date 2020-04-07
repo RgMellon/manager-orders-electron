@@ -12,6 +12,8 @@ export default function user(state = INITIAL_STATE, action) {
         const userProfile = {
           name: action.payload.user.loja_nome,
           logo: action.payload.user.logo,
+          id: action.payload.user.id,
+          loja_id: action.payload.user.loja,
         };
         draft.profile = userProfile;
         break;

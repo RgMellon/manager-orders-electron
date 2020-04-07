@@ -12,7 +12,8 @@ export default function RouteWrapper({
   isPrivate,
   ...rest
 }) {
-  const { signed } = store.getState().auth;
+  // const { signed } = store.getState().auth;
+  const signed = false;
   console.tron.log(store.getState().auth.signed);
 
   if (!signed && isPrivate) {

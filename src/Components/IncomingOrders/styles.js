@@ -68,3 +68,8 @@ export const TitleDateTimeOrder = styled.p`
   color: #d7d7d7;
   margin-bottom: 5px;
 `;
+
+export const Selector = styled.select`
+  width: 100%;
+  height: 40px;
+`;

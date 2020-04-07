@@ -7,12 +7,21 @@ import {
   ContentCard,
   DateTimeOrder,
   TitleDateTimeOrder,
+  Selector,
 } from './styles';
 
 export default function IncomingOrders() {
   return (
     <Container>
       <Content>
+        <Selector>
+          <option value="valor1" selected>
+            Pendentes
+          </option>
+          <option value="valor2">Concluidos</option>
+          <option value="valor3">Cancelado</option>
+        </Selector>
+
         <CardOrder>
           <ContentCard>
             <h4> Renan Melo </h4>
