@@ -11,7 +11,7 @@ export default function user(state = INITIAL_STATE, action) {
       case '@auth/SIGN_SUCCESS': {
         const userProfile = {
           name: action.payload.user.loja_nome,
-          email: action.payload.user.logo,
+          logo: action.payload.user.logo,
         };
         draft.profile = userProfile;
         break;
@@ -25,6 +25,7 @@ export default function user(state = INITIAL_STATE, action) {
       case '@user/UPDATE_PROFILE_SUCCESS': {
         draft.loadProfile = false;
         draft.profile = action.payload.profile;
+
         break;
       }
 

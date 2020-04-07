@@ -8,18 +8,18 @@ import {
   ButtonOpen,
 } from './styles';
 
+import { useSelector } from 'react-redux';
+
 import { FaExclamationTriangle } from 'react-icons/fa';
 
 export default function MenuHeader() {
+  const { name, logo } = useSelector(state => state.user.profile);
   return (
     <Container>
       <RightSide>
-        <img
-          src="https://i.pinimg.com/originals/64/0b/58/640b58b1ec865b11313bf8f0a2080cad.png"
-          alt="icon"
-        />
+        <img src={logo} alt="icon" />
 
-        <p> Santa Paão</p>
+        <p>{name}</p>
       </RightSide>
 
       <LeftSide>
