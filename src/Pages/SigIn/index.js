@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Form } from '@unform/web';
@@ -15,12 +15,13 @@ export default function SigIn() {
 
   function handleSubmit(data) {
     const { email, password } = data;
-    setLoad(true);
 
     if (!email || !password) {
       toast.error('Entre com um usuario e uma senha');
       return;
     }
+
+    setLoad(true);
 
     dispatch(sigInRequest(email, password));
   }
@@ -32,18 +33,8 @@ export default function SigIn() {
         alt=""
       />
       <Form onSubmit={handleSubmit}>
-        <Input
-          name="email"
-          value="adm@uaufi.com"
-          type="email"
-          placeholder="Seu email"
-        />
-        <Input
-          name="password"
-          value="Uaufiadm2018"
-          type="password"
-          placeholder="Sua senha"
-        />
+        <Input name="email" type="email" placeholder="Seu email" />
+        <Input name="password" type="password" placeholder="Sua senha" />
 
         {load ? (
           <button disabled type="submit">

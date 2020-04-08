@@ -1,15 +1,14 @@
 import produce from 'immer';
 
 const INITIAL_STATE = {
-  petshop: [],
+  orders: [],
 };
 
-export default function auth(state = INITIAL_STATE, action) {
+export default function orders(state = INITIAL_STATE, action) {
   return produce(state, draft => {
     switch (action.type) {
-      case '@petshop/DETAIL_PETSHOP_SUCCESS': {
-        draft.petshop = action.payload.petshop;
-
+      case '@orders/GET_ORDERS_SUCCESS': {
+        draft.orders = action.payload.orders;
         break;
       }
 

@@ -14,6 +14,7 @@ import { FaExclamationTriangle } from 'react-icons/fa';
 
 export default function MenuHeader() {
   const { name, logo } = useSelector(state => state.user.profile);
+
   return (
     <Container>
       <RightSide>

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import {
   Container,
@@ -10,7 +11,15 @@ import {
   Selector,
 } from './styles';
 
+import { getOrders } from '../../store/modules/orders/actions';
+
 export default function IncomingOrders() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getOrders());
+  }, []);
+
   return (
     <Container>
       <Content>
