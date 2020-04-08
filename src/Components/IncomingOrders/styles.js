@@ -22,6 +22,11 @@ export const CardOrder = styled.div`
   box-shadow: 10px 10px 30px 0px rgba(247, 247, 247, 1);
   border: 1px solid #fafafa;
   padding: 20px;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid #ddd;
+  }
 
   h4 {
     font-size: 20px;
@@ -50,16 +55,6 @@ export const ContentCard = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  div {
-    /* width: 80px; */
-    padding: 5px;
-    background: red;
-    border-radius: 5px;
-
-    color: #fff;
-    font-size: 10px;
-  }
 `;
 
 export const DateTimeOrder = styled.div``;
@@ -72,4 +67,34 @@ export const TitleDateTimeOrder = styled.p`
 export const Selector = styled.select`
   width: 100%;
   height: 40px;
+`;
+
+export const BadgeStatusPending = styled.div`
+  /* width: 80px; */
+  padding: 5px;
+  background: red;
+  border-radius: 5px;
+
+  color: #fff;
+  font-size: 10px;
+`;
+
+export const BadgeStatus = styled.div`
+  /* width: 80px; */
+  padding: 5px;
+  background: green;
+  border-radius: 5px;
+
+  color: #fff;
+  font-size: 10px;
+`;
+
+export const BadgeStatusApproved = styled.div`
+  /* width: 80px; */
+  padding: 5px;
+  background: #6b38e6;
+  border-radius: 5px;
+
+  color: #fff;
+  font-size: 10px;
 `;

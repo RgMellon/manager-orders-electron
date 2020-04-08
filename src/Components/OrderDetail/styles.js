@@ -48,7 +48,14 @@ export const Header = styled.header`
 export const ContentOrder = styled.div`
   padding: 20px;
 
+  h2 {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #333;
+  }
+
   h5 {
+    margin-top: 20px;
     font-weight: 200;
     color: #999;
   }
@@ -61,8 +68,12 @@ export const ContentOrder = styled.div`
       margin-top: 10px;
 
       li {
-        margin-top: 8px;
+        margin-top: 10px;
         font-size: 15px;
+
+        p {
+          margin-top: 200px;
+        }
       }
     }
   }
@@ -73,6 +84,9 @@ export const Collumns = styled.div`
   justify-content: space-between;
 
   margin-top: 30px;
+  p {
+    text-align: left;
+  }
 `;
 
 export const Separator = styled.div`
@@ -80,4 +94,11 @@ export const Separator = styled.div`
   background: #fafafa;
   width: 100%;
   margin-top: 20px;
+`;
+
+export const ItemComplement = styled.span`
+  margin-top: 20px;
+  display: block;
+  color: #999;
+  font-size: 16px;
 `;

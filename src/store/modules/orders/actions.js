@@ -11,3 +11,17 @@ export function getOrdersSuccess(orders) {
     payload: { orders },
   };
 }
+
+export function orderDetail(id) {
+  return {
+    type: '@orders/GET_ORDER_DETAIL',
+    payload: { id },
+  };
+}
+
+export function orderDetailSuccess(order) {
+  return {
+    type: '@orders/GET_ORDER_DETAIL_SUCCESS',
+    payload: { order },
+  };
+}

@@ -2,6 +2,7 @@ import produce from 'immer';
 
 const INITIAL_STATE = {
   orders: [],
+  orderDetail: null,
 };
 
 export default function orders(state = INITIAL_STATE, action) {
@@ -9,6 +10,11 @@ export default function orders(state = INITIAL_STATE, action) {
     switch (action.type) {
       case '@orders/GET_ORDERS_SUCCESS': {
         draft.orders = action.payload.orders;
+        break;
+      }
+
+      case '@orders/GET_ORDER_DETAIL_SUCCESS': {
+        draft.orderDetail = action.payload.order;
         break;
       }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import {
   Container,
@@ -8,14 +9,18 @@ import {
   WrapperOrder,
   Collumns,
   Separator,
+  ItemComplement,
 } from './styles';
 
 export default function OrderDetail() {
+  const { order, items } = useSelector(state => state.orders.orderDetail);
+
+  console.tron.log(order);
   return (
     <Container>
       <OrderHeader>
-        <h3> Ordem </h3>
-        <p> #999 </p>
+        <h3> Numero do pedido </h3>
+        <p> # {order.id} </p>
       </OrderHeader>
 
       <WrapperOrder>
@@ -25,18 +30,20 @@ export default function OrderDetail() {
 
         <ContentOrder>
           <h5> Nome do cliente </h5>
-          <p> Renan Gianni de Melo</p>
+          <p> {order.user.nome}</p>
         </ContentOrder>
 
         <ContentOrder>
           <h5> Telefone </h5>
-          <p> (18) 99116-1413</p>
+          <p> {order.user.celular} </p>
         </ContentOrder>
 
-        <ContentOrder>
-          <h5> Endereço de entrega </h5>
-          <p> Alberto vieira Bonfim, 841 </p>
-        </ContentOrder>
+        {order.address_string && (
+          <ContentOrder>
+            <h5> Cliente solicitou delivery no endereço </h5>
+            <p> {order.address_string} </p>
+          </ContentOrder>
+        )}
       </WrapperOrder>
 
       <WrapperOrder>
@@ -46,48 +53,86 @@ export default function OrderDetail() {
 
         <ContentOrder>
           <h5> Metodo de pagamento </h5>
-          <p> Pagamento por dinheiro</p>
+          <p>
+            {order.payment.type_text} / {order.payment.brand_text}{' '}
+          </p>
         </ContentOrder>
 
         <ContentOrder>
-          <h5> Tipo de pedido </h5>
-          <p> Viagem (Cliente irá até o local pegar o produto) </p>
+          <h5> Tipo de pedido (Delivery, Balcão, Mesa, Viagem) </h5>
+          <p> {order.type_string} </p>
         </ContentOrder>
       </WrapperOrder>
 
-      <WrapperOrder>
-        <Header>
-          <h4>Detalhe do pedido (Valores) </h4>
-        </Header>
-
-        <ContentOrder>
-          <h5> Desconto </h5>
-          <p> R$ 0,00</p>
-        </ContentOrder>
-
-        <ContentOrder>
-          <h5> Custo da embalagem </h5>
-          <p> R$ 3,00 </p>
-        </ContentOrder>
-
-        <ContentOrder>
-          <h5> Total com desconto</h5>
-          <p> R$ 22,90 </p>
-        </ContentOrder>
-
-        <ContentOrder>
-          <h5> Preço total </h5>
-          <p> R$ 22,90</p>
-        </ContentOrder>
-      </WrapperOrder>
-
+      {/* Product Detail */}
       <WrapperOrder>
         <Header>
           <h4>Detalhe do produto escolhido</h4>
         </Header>
 
         <ContentOrder>
-          <Collumns>
+          {items.map(item => (
+            <>
+              <Collumns>
+                <div>
+                  <h5> Quantidade</h5>
+                  <p> {item.amount} </p>
+                </div>
+
+                <div>
+                  <h5> Produto</h5>
+                  <p> {item.name} </p>
+                </div>
+
+                <div>
+                  <h5> Preço</h5>
+                  <p> R$ {item.product_price} </p>
+                </div>
+              </Collumns>
+
+              {JSON.parse(item.complement).length > 0 && (
+                <>
+                  <Separator />
+                  <h2> Complementos </h2>
+                </>
+              )}
+
+              <ul>
+                {JSON.parse(item.complement).map(complement =>
+                  complement.data.map(item => (
+                    <li>
+                      <ItemComplement>
+                        <b>Nome do Complemento : </b> {item.name}
+                      </ItemComplement>
+
+                      {item.desc && (
+                        <ItemComplement>
+                          <b> Descrição </b> : {item.desc}
+                        </ItemComplement>
+                      )}
+
+                      <ItemComplement>
+                        <b> Valor do complemento : </b> {item.price}
+                      </ItemComplement>
+
+                      {item.quantity && (
+                        <ItemComplement>
+                          <b> Quantidade : </b> {item.quantity}
+                        </ItemComplement>
+                      )}
+
+                      <Separator />
+                    </li>
+                  ))
+                )
+
+                // <li> {complement.data.label} </li>
+                }
+              </ul>
+            </>
+          ))}
+
+          {/* <Collumns>
             <div>
               <h5> Quantidade</h5>
               <p> 1x </p>
@@ -102,30 +147,11 @@ export default function OrderDetail() {
               <h5> Preço</h5>
               <p> R$ 20,90 </p>
             </div>
-          </Collumns>
-
-          <Separator />
-
-          <Collumns>
-            <div>
-              <h5> Quantidade</h5>
-              <p> 1x </p>
-            </div>
-
-            <div>
-              <h5> Produto</h5>
-              <p> Açai 400 ml</p>
-            </div>
-
-            <div>
-              <h5> Preço</h5>
-              <p> R$ 20,90 </p>
-            </div>
-          </Collumns>
+          </Collumns> */}
         </ContentOrder>
 
-        <ContentOrder>
-          <h5> Complementos </h5>
+        {/* <ContentOrder>
+          
           <p>
             Escolha sua combinação
             <ul>
@@ -134,11 +160,11 @@ export default function OrderDetail() {
               <li> > Leite condensado </li>
             </ul>
           </p>
-        </ContentOrder>
+        </ContentOrder> */}
 
-        <Separator />
+        {/* <Separator /> */}
 
-        <ContentOrder>
+        {/* <ContentOrder>
           <Collumns>
             <div>
               <h5> Quantidade</h5>
@@ -155,6 +181,32 @@ export default function OrderDetail() {
               <p> R$ 20,90 </p>
             </div>
           </Collumns>
+        </ContentOrder> */}
+      </WrapperOrder>
+
+      <WrapperOrder>
+        <Header>
+          <h4>Detalhe do pedido (Valores) </h4>
+        </Header>
+
+        <ContentOrder>
+          <h5> SubTotal </h5>
+          <p> R${order.price}</p>
+        </ContentOrder>
+
+        <ContentOrder>
+          <h5> Custo da embalagem </h5>
+          <p> R$ {order.package_cost} </p>
+        </ContentOrder>
+
+        <ContentOrder>
+          <h5> Total com desconto</h5>
+          <p> R$ {order.discount_price}</p>
+        </ContentOrder>
+
+        <ContentOrder>
+          <h5> Preço total </h5>
+          <p> R$ {order.total_price} </p>
         </ContentOrder>
       </WrapperOrder>
     </Container>

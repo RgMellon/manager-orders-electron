@@ -25,6 +25,7 @@ export const ListMenu = styled.ul`
   }
 
   li {
+    position: relative;
     cursor: pointer;
     /* background: red; */
     margin-top: 30px;
@@ -50,4 +51,17 @@ export const ListMenu = styled.ul`
       margin-top: 10px;
     }
   }
+`;
+
+export const BadgeQttOrder = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  background: #ef6614;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  top: 0;
+  left: 40;
 `;
