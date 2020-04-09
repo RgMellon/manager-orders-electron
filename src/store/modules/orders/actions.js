@@ -19,6 +19,12 @@ export function orderDetail(id) {
   };
 }
 
+export function clearOrderDetail() {
+  return {
+    type: '@orders/CLEAR_ORDER_DETAIL',
+  };
+}
+
 export function orderDetailSuccess(order) {
   return {
     type: '@orders/GET_ORDER_DETAIL_SUCCESS',

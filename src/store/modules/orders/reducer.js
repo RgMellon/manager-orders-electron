@@ -18,6 +18,11 @@ export default function orders(state = INITIAL_STATE, action) {
         break;
       }
 
+      case '@orders/CLEAR_ORDER_DETAIL': {
+        draft.orderDetail = null;
+        break;
+      }
+
       // eslint-disable-next-line no-fallthrough
       default:
     }

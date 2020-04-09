@@ -5,6 +5,7 @@ import { Container, ListMenu, BadgeQttOrder } from './styles';
 import { FaFileAlt, FaNewspaper, FaSignOutAlt } from 'react-icons/fa';
 
 import history from '../../services/history';
+import audio from '../../aux/audio';
 
 import { signOut } from '../../store/modules/auth/actions';
 
@@ -16,6 +17,12 @@ import { toast } from 'react-toastify';
 
 export default function VerticalMenu() {
   const profile = useSelector(state => state.user.profile);
+  const { orders } = useSelector(state => state.orders);
+
+  const qttPendingOrders = useMemo(() => {
+    const pendingOrders = orders.filter(item => item.status === 4);
+    return pendingOrders.length;
+  }, [orders]);
 
   const dispatch = useDispatch();
 
@@ -34,6 +41,7 @@ export default function VerticalMenu() {
     if (profile) {
       socket.on('orders.refresh', order => {
         try {
+          audio.play();
           let myNotification = new Notification('NOVO AGENDAMENTO!', {
             body: 'Você possui um novo agendamento',
           });
@@ -45,7 +53,6 @@ export default function VerticalMenu() {
           dispatch(getOrders());
         } catch (e) {
           toast.error('Novo Pedido');
-          console.tron.log(e);
         }
       });
     }
@@ -67,7 +74,9 @@ export default function VerticalMenu() {
             handleRedirect('/dashboard');
           }}
         >
-          <BadgeQttOrder> 3 </BadgeQttOrder>
+          {qttPendingOrders > 0 && (
+            <BadgeQttOrder> {qttPendingOrders} </BadgeQttOrder>
+          )}
           <FaFileAlt size={20} color="#fff" />
           <p> Pedidos </p>
         </li>

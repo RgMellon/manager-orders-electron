@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import StatusBottomBar from '../../Components/StatusBottomBar';
+
 import {
   Container,
   ContentOrder,
@@ -9,20 +11,21 @@ import {
   WrapperOrder,
   Collumns,
   Separator,
+  Observation,
   ItemComplement,
 } from './styles';
 
 export default function OrderDetail() {
   const { order, items } = useSelector(state => state.orders.orderDetail);
 
-  console.tron.log(order);
+  // console.tron.log(items);
+
   return (
     <Container>
       <OrderHeader>
         <h3> Numero do pedido </h3>
         <p> # {order.id} </p>
       </OrderHeader>
-
       <WrapperOrder>
         <Header>
           <h4>Dados do cliente</h4>
@@ -45,7 +48,6 @@ export default function OrderDetail() {
           </ContentOrder>
         )}
       </WrapperOrder>
-
       <WrapperOrder>
         <Header>
           <h4>Metodo de pagamento / Entrega </h4>
@@ -54,7 +56,7 @@ export default function OrderDetail() {
         <ContentOrder>
           <h5> Metodo de pagamento </h5>
           <p>
-            {order.payment.type_text} / {order.payment.brand_text}{' '}
+            {order.payment.type_text} / {order.payment.brand_text}
           </p>
         </ContentOrder>
 
@@ -63,8 +65,6 @@ export default function OrderDetail() {
           <p> {order.type_string} </p>
         </ContentOrder>
       </WrapperOrder>
-
-      {/* Product Detail */}
       <WrapperOrder>
         <Header>
           <h4>Detalhe do produto escolhido</h4>
@@ -85,10 +85,16 @@ export default function OrderDetail() {
                 </div>
 
                 <div>
-                  <h5> Preço</h5>
+                  <h3> Preço</h3>
                   <p> R$ {item.product_price} </p>
                 </div>
               </Collumns>
+
+              <Observation>
+                <h5> Observação do cliente </h5>
+
+                <p> {item.observation}</p>
+              </Observation>
 
               {JSON.parse(item.complement).length > 0 && (
                 <>
@@ -124,65 +130,23 @@ export default function OrderDetail() {
                       <Separator />
                     </li>
                   ))
-                )
-
-                // <li> {complement.data.label} </li>
-                }
+                )}
               </ul>
             </>
           ))}
-
-          {/* <Collumns>
-            <div>
-              <h5> Quantidade</h5>
-              <p> 1x </p>
-            </div>
-
-            <div>
-              <h5> Produto</h5>
-              <p> Açai 400 ml</p>
-            </div>
-
-            <div>
-              <h5> Preço</h5>
-              <p> R$ 20,90 </p>
-            </div>
-          </Collumns> */}
         </ContentOrder>
-
-        {/* <ContentOrder>
-          
-          <p>
-            Escolha sua combinação
-            <ul>
-              <li> > Leite em pó</li>
-              <li> > Morango </li>
-              <li> > Leite condensado </li>
-            </ul>
-          </p>
-        </ContentOrder> */}
-
-        {/* <Separator /> */}
-
-        {/* <ContentOrder>
-          <Collumns>
-            <div>
-              <h5> Quantidade</h5>
-              <p> 1x </p>
-            </div>
-
-            <div>
-              <h5> Produto</h5>
-              <p> Açai 400 ml</p>
-            </div>
-
-            <div>
-              <h5> Preço</h5>
-              <p> R$ 20,90 </p>
-            </div>
-          </Collumns>
-        </ContentOrder> */}
       </WrapperOrder>
+      {order.observation && (
+        <WrapperOrder>
+          <Header>
+            <h4> Observação do cliente </h4>
+          </Header>
+
+          <ContentOrder>
+            <p>{order.observation}</p>
+          </ContentOrder>
+        </WrapperOrder>
+      )}
 
       <WrapperOrder>
         <Header>
@@ -209,6 +173,7 @@ export default function OrderDetail() {
           <p> R$ {order.total_price} </p>
         </ContentOrder>
       </WrapperOrder>
+      <StatusBottomBar></StatusBottomBar>
     </Container>
   );
 }

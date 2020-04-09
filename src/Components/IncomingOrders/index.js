@@ -12,12 +12,19 @@ import {
   BadgeStatusPending,
   BadgeStatus,
   BadgeStatusApproved,
+  FilterArea,
+  WrapperButton,
+  FilterButton,
+  AreaFilter,
 } from './styles';
+
+import { FaFilter } from 'react-icons/fa';
 
 import { getOrders, orderDetail } from '../../store/modules/orders/actions';
 
 import { parseISO, formatDistance } from 'date-fns';
 import pt from 'date-fns/locale/pt';
+import audio from '../../aux/audio';
 
 export default function IncomingOrders() {
   const { orders } = useSelector(state => state.orders);
@@ -35,15 +42,21 @@ export default function IncomingOrders() {
   }, []);
 
   useMemo(() => {
-    const filteredOrders = orders.filter(item => item.status === 4);
-    setListOrders(formatOrders(filteredOrders));
+    setListOrders(formatOrders(orders));
   }, [orders]);
 
-  function handleChange(event) {
-    console.tron.log(event.target.value);
-    const ordersFiltred = filterStatusOrder(event.target.value);
-    const resultOrders = formatOrders(ordersFiltred);
-    setListOrders(resultOrders);
+  function handleChange(id) {
+    if (!id) {
+      const formated = formatOrders(orders);
+      setListOrders(formated);
+    }
+
+    if (id) {
+      const ordersFiltred = filterStatusOrder(id);
+      const resultOrders = formatOrders(ordersFiltred);
+      setListOrders(resultOrders);
+      return;
+    }
   }
 
   function filterStatusOrder(id) {
@@ -62,19 +75,42 @@ export default function IncomingOrders() {
   }
 
   function handleShowDetail(id) {
+    audio.stop();
     dispatch(orderDetail(id));
   }
 
   return (
     <Container>
       <Content>
-        <Selector onChange={handleChange}>
+        <FilterArea>
+          <AreaFilter>
+            <FaFilter size={15} />
+            <p> Filtrar por status </p>
+          </AreaFilter>
+
+          <WrapperButton>
+            <FilterButton onClick={() => handleChange()} bkg={'#999'}>
+              Todos
+            </FilterButton>
+
+            <FilterButton onClick={() => handleChange(4)} bkg={'#fd3d35'}>
+              Pendente
+            </FilterButton>
+            <FilterButton onClick={() => handleChange(5)} bkg={'#6b38e6'}>
+              Aprovado
+            </FilterButton>
+            <FilterButton onClick={() => handleChange(7)} bkg={'#009c98'}>
+              Pronto
+            </FilterButton>
+          </WrapperButton>
+        </FilterArea>
+        {/* <Selector onChange={handleChange}>
           <option value="4" selected>
             Pedidos Pendentes
           </option>
           <option value="5"> Pedido Aprovado </option>
           <option value="7"> Pedido Pronto </option>
-        </Selector>
+        </Selector> */}
 
         {listOrders.map(item => (
           <CardOrder

@@ -102,3 +102,9 @@ export const ItemComplement = styled.span`
   color: #999;
   font-size: 16px;
 `;
+
+export const Observation = styled.div`
+  margin-top: 40px;
+  background: #fafafa;
+  padding: 20px;
+`;

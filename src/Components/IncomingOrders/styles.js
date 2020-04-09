@@ -82,7 +82,7 @@ export const BadgeStatusPending = styled.div`
 export const BadgeStatus = styled.div`
   /* width: 80px; */
   padding: 5px;
-  background: green;
+  background: #009c98;
   border-radius: 5px;
 
   color: #fff;
@@ -97,4 +97,36 @@ export const BadgeStatusApproved = styled.div`
 
   color: #fff;
   font-size: 10px;
+`;
+
+export const FilterArea = styled.section`
+  padding: 20px;
+`;
+
+export const WrapperButton = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+`;
+
+export const FilterButton = styled.button`
+  background: ${props => props.bkg};
+  height: 30px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 0px;
+  outline: none;
+
+  color: #fff;
+  font-size: 8px;
+  width: 20%;
+`;
+
+export const AreaFilter = styled.div`
+  display: flex;
+
+  p {
+    margin-left: 20px;
+  }
 `;
