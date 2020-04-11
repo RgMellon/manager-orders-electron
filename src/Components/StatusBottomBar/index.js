@@ -10,6 +10,8 @@ import {
   clearOrderDetail,
 } from '../../store/modules/orders/actions';
 
+import PrinterButton from '../../Components/PrinterButton';
+
 export default function StatusBottomBar() {
   const { order } = useSelector(state => state.orders.orderDetail);
   const dispatch = useDispatch();
@@ -38,18 +40,12 @@ export default function StatusBottomBar() {
       dispatch(getOrders());
       const { next_status, status } = response.data.order;
 
-      // console.tron.log(next_status);
-
       setButtonText(next_status);
       setCurrentStatus(status);
 
       if (currentStatus === 7) {
         dispatch(clearOrderDetail());
       }
-
-      // new Notification('Pedido mudou de status', {
-      //   body: 'Você mudou o status do pedido ',
-      // });
       toast.success('Pedido mudou de status');
     } catch (e) {
       toast.error('Ops, ocorreu um erro ao avançar os Status');
@@ -72,6 +68,8 @@ export default function StatusBottomBar() {
       {currentStatus === 4 && (
         <CancelButton onClick={handleCancel}>Cancelar</CancelButton>
       )}
+
+      <PrinterButton />
 
       {buttonText && (
         <NextButton
