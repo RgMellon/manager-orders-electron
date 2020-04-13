@@ -12,7 +12,7 @@ export default function News() {
 
   return (
     <Container>
-      <button onClick={handleStop}> Para pai </button>
+      <button onClick={handleStop}> Para ssspai </button>
       <h3> oi </h3>
     </Container>
   );
