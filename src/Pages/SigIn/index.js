@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Form } from '@unform/web';
 import Input from '../../Components/Input';
@@ -9,9 +9,9 @@ import { Content } from './styles';
 import { sigInRequest } from '../../store/modules/auth/actions';
 
 export default function SigIn() {
-  const dispatch = useDispatch();
+  const { loading } = useSelector(state => state.auth);
 
-  const [load, setLoad] = useState(false);
+  const dispatch = useDispatch();
 
   function handleSubmit(data) {
     const { email, password } = data;
@@ -20,8 +20,6 @@ export default function SigIn() {
       toast.error('Entre com um usuario e uma senha');
       return;
     }
-
-    setLoad(true);
 
     dispatch(sigInRequest(email, password));
   }
@@ -36,7 +34,7 @@ export default function SigIn() {
         <Input name="email" type="email" placeholder="Seu email" />
         <Input name="password" type="password" placeholder="Sua senha" />
 
-        {load ? (
+        {loading ? (
           <button disabled type="submit">
             Carregando...
           </button>
