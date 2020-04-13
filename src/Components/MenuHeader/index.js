@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
   Container,
@@ -8,15 +9,16 @@ import {
   ButtonOpen,
 } from './styles';
 
-import { useSelector } from 'react-redux';
-
 import { FaExclamationTriangle } from 'react-icons/fa';
 
 import api from '../../services/api';
 
+import { setIsOnline } from '../../store/modules/online/actions';
+
 export default function MenuHeader() {
+  const dispatch = useDispatch();
   const { name, logo } = useSelector(state => state.user.profile);
-  const [isOnLine, setIsOnline] = useState(false);
+  const { isOnline } = useSelector(state => state.online);
 
   useEffect(() => {
     async function handleGetOnline() {
@@ -24,7 +26,7 @@ export default function MenuHeader() {
 
       const { online } = response.data;
 
-      setIsOnline(online);
+      dispatch(setIsOnline(online));
     }
 
     handleGetOnline();
@@ -35,7 +37,7 @@ export default function MenuHeader() {
 
     const { online } = response.data;
 
-    setIsOnline(online);
+    dispatch(setIsOnline(online));
   }
 
   return (
@@ -47,7 +49,7 @@ export default function MenuHeader() {
       </RightSide>
 
       <LeftSide>
-        {!isOnLine ? (
+        {!isOnline ? (
           <ButtonOpen bkg="#d6d6d6" onClick={handleIsOnline}>
             Abrir loja
           </ButtonOpen>
@@ -57,9 +59,9 @@ export default function MenuHeader() {
           </ButtonOpen>
         )}
 
-        <MessageIsOpen bkg={isOnLine ? '#009c98' : '#fd3d35'}>
+        <MessageIsOpen bkg={isOnline ? '#009c98' : '#fd3d35'}>
           <FaExclamationTriangle color="#fff" />
-          {isOnLine ? <p> LOJA ABERTA</p> : <p> LOJA FECHADA </p>}
+          {isOnline ? <p> LOJA ABERTA</p> : <p> LOJA FECHADA </p>}
         </MessageIsOpen>
       </LeftSide>
     </Container>
