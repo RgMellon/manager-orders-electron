@@ -47,6 +47,7 @@
     "electron-build": "electron-builder",
     "build": "npm run react-build && npm run electron-build",
     "win": "npm run react-build && npm run electron-build --windows nsis:ia32",
+    "setup": "electron-installer-windows --src dist/app-win32-x64/ --dest dist/installers/",
     "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000/ && npm run electron-dev\""
   },
   "eslintConfig": {
@@ -68,6 +69,7 @@
     "concurrently": "^5.1.0",
     "electron": "^8.1.0",
     "electron-builder": "^22.4.0",
+    "electron-installer-windows": "^3.0.0",
     "wait-on": "^4.0.1"
   }
 }
