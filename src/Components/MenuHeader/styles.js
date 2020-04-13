@@ -38,7 +38,7 @@ export const LeftSide = styled.div`
 export const MessageIsOpen = styled.div`
   width: 180px;
   height: 40px;
-  background: #fd3d35;
+  background: ${props => props.bkg};
   margin-right: 20px;
 
   display: flex;
@@ -54,7 +54,7 @@ export const MessageIsOpen = styled.div`
 
 export const ButtonOpen = styled.button`
   margin-right: 40px;
-  background: #d6d6d6;
+  background: ${props => props.bkg};
   border-radius: 4px;
   color: #fff;
   outline: none;

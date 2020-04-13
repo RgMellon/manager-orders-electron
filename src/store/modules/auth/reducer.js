@@ -20,6 +20,7 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.token = user.token;
         draft.signed = true;
         draft.loading = false;
+
         break;
       }
 
