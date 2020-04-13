@@ -24,7 +24,7 @@ import { getOrders, orderDetail } from '../../store/modules/orders/actions';
 
 import { parseISO, formatDistance } from 'date-fns';
 import pt from 'date-fns/locale/pt';
-import audio from '../../aux/audio';
+import audio from '../../auxiliar/audio';
 
 export default function IncomingOrders() {
   const { orders } = useSelector(state => state.orders);

@@ -5,7 +5,7 @@ import { Container, ListMenu, BadgeQttOrder } from './styles';
 import { FaFileAlt, FaNewspaper, FaSignOutAlt } from 'react-icons/fa';
 
 import history from '../../services/history';
-import audio from '../../aux/audio';
+import audio from '../../auxiliar/audio';
 
 import { signOut } from '../../store/modules/auth/actions';
 

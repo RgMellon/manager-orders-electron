@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container } from './styles';
 
-import audio from '../../aux/audio';
+import audio from '../../auxiliar/audio';
 
 export default function News() {
   function handleStop() {
