@@ -13,7 +13,19 @@ class PrinterButton extends React.Component {
     return (
       <div>
         <ReactToPrint
-          trigger={() => <a href="#">Imprimir</a>}
+          trigger={() => (
+            <a
+              href="#"
+              style={{
+                background: '#999',
+                padding: 15,
+                color: '#fff',
+                borderRadius: 8,
+              }}
+            >
+              Imprimir
+            </a>
+          )}
           content={() => this.componentRef}
         />
         <div style={{ display: 'none' }}>

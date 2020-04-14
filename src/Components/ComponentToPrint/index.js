@@ -16,13 +16,12 @@ import {
   ContentTotalPrice,
 } from './styles';
 
+import { format } from 'date-fns';
+import pt from 'date-fns/locale/pt';
+
 import logo from './logouaupreto.png';
 
 class ComponentToPrint extends React.Component {
-  // componentDidMount() {
-  //   this.setState({ order: this.props.teste.order });
-  // }
-
   render() {
     const { order, items } = this.props.orderDetail;
     return (
@@ -43,7 +42,9 @@ class ComponentToPrint extends React.Component {
           <tbody>
             <tr align="center">
               <td>{order.id} </td>
-              <td> {} </td>
+              <td>
+                {format(new Date(), "d 'de' MMM HH:mm:ss", { locale: pt })}
+              </td>
               <td>{order.type_string}</td>
               <td> {order.delivery_price} </td>
               <td> {order.package_cost} </td>
