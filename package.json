@@ -1,6 +1,9 @@
 {
   "name": "UaufiDesktop",
+  "license": "MIT",
   "version": "0.1.0",
+  "author": "Uau-fi Inc",
+  "description": "Uaufi order delivery Desktop",
   "private": true,
   "main": "public/electron.js",
   "build": {
@@ -46,6 +49,7 @@
     "react-eject": "react-scripts eject",
     "electron-build": "electron-builder",
     "build": "npm run react-build && npm run electron-build",
+    "build32": "npm run react-build && npm run electron-build -- --ia32",
     "win": "npm run react-build && npm run electron-build --windows nsis:ia32",
     "setup": "electron-installer-windows --src dist/app-win32-x64/ --dest dist/installers/",
     "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000/ && npm run electron-dev\""

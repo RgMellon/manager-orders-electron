@@ -1,22 +1,35 @@
 import React, { useRef } from 'react';
-import { Container, Frame } from './styles';
+import { connect } from 'react-redux';
+
 import ReactToPrint from 'react-to-print';
 import ComponentToPrint from '../ComponentToPrint';
 
 class PrinterButton extends React.Component {
+  componentDidMount() {
+    console.log(this.props.orderDetail, 'sdpfds');
+  }
+
   render() {
     return (
       <div>
         <ReactToPrint
-          trigger={() => <a href="#">Print this out!</a>}
+          trigger={() => <a href="#">Imprimir</a>}
           content={() => this.componentRef}
         />
         <div style={{ display: 'none' }}>
-          <ComponentToPrint ref={el => (this.componentRef = el)} />
+          <ComponentToPrint
+            orderDetail={this.props.orderDetail}
+            ref={el => (this.componentRef = el)}
+          />
         </div>
       </div>
     );
   }
 }
 
-export default PrinterButton;
+const mapStateToProps = state => ({
+  orderDetail: state.orders.orderDetail,
+});
+
+export default connect(mapStateToProps)(PrinterButton);
+// export default PrinterButton;

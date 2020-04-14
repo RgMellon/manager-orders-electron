@@ -32,6 +32,7 @@ export default function VerticalMenu() {
         query: {
           loja_login_id: profile.id,
           loja_id: profile.loja_id,
+          app_env: 'testing',
         },
       });
     }
