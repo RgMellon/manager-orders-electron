@@ -7,7 +7,24 @@
   "private": true,
   "main": "public/electron.js",
   "build": {
-    "appId": "teste.app"
+    "appId": "teste.app",
+    "mac": {
+      "icon": "public/icons/mac/uau.icns",
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "icon": "./public/icons/win/uau.png"
+    },
+    "files": [
+      "./build/**/*",
+      "./dist/**/*",
+      "./node_modules/**/*",
+      "./public/**/*",
+      "*.js"
+    ],
+    "directories": {
+      "buildResources": "public"
+    }
   },
   "homepage": "./",
   "dependencies": {

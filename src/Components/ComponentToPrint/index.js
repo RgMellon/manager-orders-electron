@@ -88,6 +88,7 @@ class ComponentToPrint extends React.Component {
           <ul>
             <li>
               <b>A receber: </b>
+
               {order.payment_type === 2 ? (
                 <>
                   <span> ( X )Sim </span>
@@ -100,14 +101,17 @@ class ComponentToPrint extends React.Component {
                 </>
               )}
             </li>
+
             <li>
               <b>Tipo de pagamento: </b>
               <span> {order.payment_type_string} </span>
             </li>
+
             <li>
               <b>Pagamento na entrega:</b>
               <span> {order.payment.type_text} </span>
             </li>
+
             <li>
               <b> Bandeira do Cartão:</b>
               <span> {order.payment.brand_text} </span>
@@ -115,7 +119,6 @@ class ComponentToPrint extends React.Component {
           </ul>
         </ContentInfoPayment>
 
-        <hr />
         {order.observation && (
           <ContentObservation>
             <b> Observação : </b>
@@ -126,6 +129,7 @@ class ComponentToPrint extends React.Component {
         <hr />
 
         <TextCenter> NÃO É CUPOM FISCAL</TextCenter>
+
         <TableProduct>
           <thead>
             <tr>

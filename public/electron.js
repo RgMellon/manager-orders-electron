@@ -14,6 +14,7 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
     },
+    icon: path.resolve(__dirname, 'src', 'assets', 'icon.png'),
     // frame: false,
   });
 
