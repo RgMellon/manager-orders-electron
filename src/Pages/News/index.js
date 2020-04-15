@@ -5,8 +5,10 @@ import { Container, Header, Content, Card } from './styles';
 import img from './video.svg';
 
 export default function News() {
+  const { shell } = window.require('electron');
+
   function handleRedirect() {
-    window.open('https://vimeo.com/408045621/80c05c12e8', '_blank');
+    shell.openExternal('https://vimeo.com/408045621/80c05c12e8');
   }
 
   return (
