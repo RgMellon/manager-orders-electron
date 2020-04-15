@@ -31,7 +31,7 @@ export const Content = styled.div`
   padding: 20px;
 `;
 
-export const Card = styled.div`
+export const Card = styled.button`
   cursor: pointer;
   width: 33.33%;
   border: 1px solid #efefef;

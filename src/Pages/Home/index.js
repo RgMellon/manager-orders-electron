@@ -15,7 +15,7 @@ export default function Home() {
       <IncomingOrders />
       {!isOnline && <CloseStore />}
 
-      {isOnline && <> {orderDetail && <OrderDetail />}</>}
+      {isOnline && orderDetail && <OrderDetail />}
     </Container>
   );
 }
