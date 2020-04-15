@@ -1,19 +1,29 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Container, Header, Content, Card } from './styles';
 
-import audio from '../../auxiliar/audio';
+import img from './video.svg';
 
 export default function News() {
-  function handleStop() {
-    audio.stop();
-    console.log('estopei');
-  }
-
   return (
     <Container>
-      <button onClick={handleStop}> Para ssspai </button>
-      <h3> oi </h3>
+      <Header>
+        <img src={img} alt="img-video" />
+        <span>
+          <h1> Veja como usar nosso sistema </h1>
+          <p> assista nossos videos</p>
+        </span>
+      </Header>
+
+      <Content>
+        <Card>
+          <img src="https://i.imgur.com/WtxZl7o.jpg" alt="" />
+          <footer>
+            <h4> Primeiros passos </h4>
+            <p> Como utilizar nosso gestor </p>
+          </footer>
+        </Card>
+      </Content>
     </Container>
   );
 }

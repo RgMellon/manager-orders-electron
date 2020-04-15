@@ -47,6 +47,7 @@ export const Header = styled.header`
 
 export const ContentOrder = styled.div`
   padding: 20px;
+  background: ${props => (props.bkg ? props.bkg : '#fff')}}
 
   h2 {
     margin-top: 10px;

@@ -30,16 +30,21 @@ export default function OrderDetail() {
         <Header>
           <h4>Dados do cliente</h4>
         </Header>
-
         <ContentOrder>
           <h5> Nome do cliente </h5>
           <p> {order.user.nome}</p>
         </ContentOrder>
-
         <ContentOrder>
           <h5> Telefone </h5>
           <p> {order.user.celular} </p>
         </ContentOrder>
+
+        {order.document_number && (
+          <ContentOrder bkg="#e8e5f5">
+            <h5> USUARIO DESEJA CPF / CNPJ NA NOTA </h5>
+            <p> {order.document_number} </p>
+          </ContentOrder>
+        )}
 
         {order.address_string && (
           <ContentOrder>
@@ -62,7 +67,12 @@ export default function OrderDetail() {
 
         <ContentOrder>
           <h5> Tipo de pedido (Delivery, Balcão, Mesa, Viagem) </h5>
-          <p> {order.type_string} </p>
+          {!order.table && <p> {order.type_string} </p>}
+          {order.table && (
+            <p>
+              {order.type_string} (Numero da mesa: {order.table})
+            </p>
+          )}
         </ContentOrder>
       </WrapperOrder>
       <WrapperOrder>

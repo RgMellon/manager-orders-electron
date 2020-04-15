@@ -1,7 +1,7 @@
+import ring from './ring.mp3';
+
 var audio = {
-  music: new Audio(
-    'http://www.orangefreesounds.com/wp-content/uploads/2014/11/All-mp3.mp3'
-  ),
+  music: new Audio(ring),
 
   play: function() {
     this.music.play();

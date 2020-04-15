@@ -2,7 +2,12 @@ import React, { useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Container, ListMenu, BadgeQttOrder } from './styles';
-import { FaFileAlt, FaNewspaper, FaSignOutAlt } from 'react-icons/fa';
+import {
+  FaFileAlt,
+  FaNewspaper,
+  FaSignOutAlt,
+  FaYoutube,
+} from 'react-icons/fa';
 
 import history from '../../services/history';
 import audio from '../../auxiliar/audio';
@@ -87,8 +92,8 @@ export default function VerticalMenu() {
             handleRedirect('/news');
           }}
         >
-          <FaNewspaper size={20} color="#fff" />
-          <p> Novidades </p>
+          <FaYoutube size={20} color="#fff" />
+          <p> Tutoriais </p>
         </li>
 
         <button onClick={handleLogout}>

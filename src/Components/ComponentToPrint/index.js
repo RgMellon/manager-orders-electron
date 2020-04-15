@@ -84,6 +84,15 @@ class ComponentToPrint extends React.Component {
           <b> Cliente </b> : <span> {order.user.nome} </span>
         </ContentUser>
         <hr />
+
+        {order.document_number && (
+          <ContentUser>
+            <b>CLIENTE DESEJA CPF / CNPJ NOTA </b> :
+            <span> {order.document_number} </span>
+          </ContentUser>
+        )}
+
+        <hr />
         <ContentInfoPayment>
           <ul>
             <li>
