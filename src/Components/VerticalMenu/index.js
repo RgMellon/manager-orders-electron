@@ -35,9 +35,8 @@ export default function VerticalMenu() {
     if (profile) {
       return socketio('https://socketward.uaufi.com/', {
         query: {
-          loja_login_id: profile.id,
           loja_id: profile.loja_id,
-          app_env: 'testing',
+          app_env: 'production',
         },
       });
     }
