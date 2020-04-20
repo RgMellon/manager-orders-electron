@@ -18,8 +18,6 @@ import {
 export default function OrderDetail() {
   const { order, items } = useSelector(state => state.orders.orderDetail);
 
-  // console.tron.log(items);
-
   return (
     <Container>
       <OrderHeader>

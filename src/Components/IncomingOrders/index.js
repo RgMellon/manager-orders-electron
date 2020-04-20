@@ -26,6 +26,8 @@ import { parseISO, formatDistance } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import audio from '../../auxiliar/audio';
 
+import ButtonRefresh from '../../Components/ButtonRefresh';
+
 export default function IncomingOrders() {
   const { orders } = useSelector(state => state.orders);
   const [listOrders, setListOrders] = useState([]);
@@ -104,13 +106,8 @@ export default function IncomingOrders() {
             </FilterButton>
           </WrapperButton>
         </FilterArea>
-        {/* <Selector onChange={handleChange}>
-          <option value="4" selected>
-            Pedidos Pendentes
-          </option>
-          <option value="5"> Pedido Aprovado </option>
-          <option value="7"> Pedido Pronto </option>
-        </Selector> */}
+
+        <ButtonRefresh />
 
         {listOrders.map(item => (
           <CardOrder
