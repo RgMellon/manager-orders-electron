@@ -14,6 +14,7 @@ import {
   TableProduct,
   ContentComplement,
   ContentTotalPrice,
+  Separator,
 } from './styles';
 
 import { format } from 'date-fns';
@@ -26,7 +27,7 @@ class ComponentToPrint extends React.Component {
     const { order, items } = this.props.orderDetail;
     return (
       <Container>
-        <img src={logo} alt="" />
+        <img src={logo} alt="Logo" />
         <TextCenter> {order.store.loja_nome} </TextCenter>
         <TextCenter>
           {order.store.loja_ende}, {order.store.loja_ende_n}
@@ -149,24 +150,49 @@ class ComponentToPrint extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {items.map(item => (
-              <tr align="center">
-                <td> {item.amount} </td>
-                <td> {item.name} </td>
-                <td> {item.unit_price} </td>
-                <td>{order.price}</td>
-              </tr>
+            {items.map((item) => (
+              <>
+                <tr align="center">
+                  <th> {item.amount} </th>
+                  <th> {item.name} </th>
+                  <td> {item.unit_price} </td>
+                  <td>{item.total_price}</td>
+                </tr>
+
+                {/* Begin complement */}
+
+                {JSON.parse(item.complement).length > 0 &&
+                  JSON.parse(item.complement).map((complement) => (
+                    <div style={{ marginBottom: 10 }}>
+                      {complement.data.map((item) => (
+                        <tr style={{ marginBottom: 10 }}>
+                          <td> </td>
+                          <td colSpan="2">
+                            {item.quantity || 1}x {item.name} - R${' '}
+                            {item.price ? item.price : '0,0'}
+                          </td>
+                        </tr>
+                      ))}
+                    </div>
+                  ))}
+
+                <tr align="center">
+                  <td colSpan={4}>
+                    <Separator />
+                  </td>
+                </tr>
+              </>
             ))}
           </tbody>
         </TableProduct>
 
-        {items.map(
-          item =>
+        {/* {items.map(
+          (item) =>
             JSON.parse(item.complement).length > 0 && (
               <ul>
-                {JSON.parse(item.complement).map(complement => (
+                {JSON.parse(item.complement).map((complement) => (
                   <ContentComplement key={complement.id}>
-                    {complement.data.map(item => (
+                    {complement.data.map((item) => (
                       <li key={item.id}>
                         {console.log(item)}
                         <b> Complementos : </b>
@@ -179,7 +205,7 @@ class ComponentToPrint extends React.Component {
                 ))}
               </ul>
             )
-        )}
+        )} */}
 
         <ContentTotalPrice>
           <ul>

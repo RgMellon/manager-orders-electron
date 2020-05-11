@@ -88,7 +88,7 @@ export const ContentComplement = styled.div`
 
 export const ContentTotalPrice = styled.div`
   width: 100%;
-  margin-top: 5px;
+  margin-top: 10px;
   li {
     width: 100%;
     div {
@@ -101,4 +101,13 @@ export const ContentTotalPrice = styled.div`
       }
     }
   }
+`;
+
+export const Separator = styled.hr`
+  display: block;
+  height: 1px;
+  /* background: transparent; */
+  width: 100%;
+
+  border: solid 0.5px #aaa;
 `;

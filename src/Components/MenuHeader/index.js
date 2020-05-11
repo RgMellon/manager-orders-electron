@@ -17,8 +17,8 @@ import { setIsOnline } from '../../store/modules/online/actions';
 
 export default function MenuHeader() {
   const dispatch = useDispatch();
-  const { name, logo } = useSelector(state => state.user.profile);
-  const { isOnline } = useSelector(state => state.online);
+  const { name, logo } = useSelector((state) => state.user.profile);
+  const { isOnline } = useSelector((state) => state.online);
 
   useEffect(() => {
     async function handleGetOnline() {
@@ -50,7 +50,7 @@ export default function MenuHeader() {
 
       <LeftSide>
         {!isOnline ? (
-          <ButtonOpen bkg="#d6d6d6" onClick={handleIsOnline}>
+          <ButtonOpen bkg="#07bc0c" onClick={handleIsOnline}>
             Abrir loja
           </ButtonOpen>
         ) : (
